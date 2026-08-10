@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "meeting": {
+    "id": "meeting:replay:demo-2024",
+    "name": "Austrian GP",
+    "countryCode": "AT",
+    "circuitId": "track:red-bull-ring",
+    "circuitName": "Red Bull Ring",
+    "startsAt": "2024-06-28T10:30:00.000Z",
+    "endsAt": "2024-06-30T15:00:00.000Z",
+    "sessions": [
+      { "id": "session:replay:practice-2024", "name": "Practice", "kind": "practice", "startsAt": "2024-06-28T10:30:00.000Z", "endsAt": "2024-06-28T11:30:00.000Z", "phase": "finished_final" },
+      { "id": "session:replay:qualifying-2024", "name": "Qualifying", "kind": "qualifying", "startsAt": "2024-06-29T14:00:00.000Z", "endsAt": "2024-06-29T15:00:00.000Z", "phase": "finished_final" },
+      { "id": "session:replay:demo-race-2024", "name": "Race", "kind": "race", "startsAt": "2024-06-30T13:00:00.000Z", "endsAt": null, "phase": "live" }
+    ],
+    "nextMeeting": { "id": "meeting:replay:british-2024", "name": "British GP", "startsAt": "2024-07-05T11:30:00.000Z" }
+  },
+  "track": {
+    "id": "track:red-bull-ring",
+    "name": "Red Bull Ring",
+    "countryCode": "AT",
+    "lengthKm": 4.318,
+    "laps": 71,
+    "pitLossSec": 21.5,
+    "drsZones": ["Turn 1 straight", "Turn 3 straight", "Main straight"],
+    "sectors": ["S1", "S2", "S3"],
+    "layoutPath": "/tracks/red-bull-ring.svg"
+  },
+  "session": {
+    "id": "session:replay:demo-race-2024",
+    "meetingId": "meeting:replay:demo-2024",
+    "kind": "race",
+    "phase": "live",
+    "segment": null,
+    "startedAt": "2024-06-30T13:00:00.000Z",
+    "endsAt": null,
+    "clockSeconds": null,
+    "lap": 43,
+    "totalLaps": 71,
+    "trackStatus": { "code": "GREEN", "label": "Green flag" },
+    "sourceUpdatedAt": "2024-06-30T14:02:00.000Z",
+    "drivers": [
+      { "number": 4, "code": "NOR", "name": "Lando Norris", "team": "McLaren", "color": "#FF8700", "position": 1, "gap": 0, "interval": null, "compound": "MEDIUM", "stintStart": 32, "pitLap": 31, "lapTimes": [69.01,68.96,68.92,68.88,68.91,68.86,68.84,68.89,68.83,68.81,68.85,68.82] },
+      { "number": 1, "code": "VER", "name": "Max Verstappen", "team": "Red Bull Racing", "color": "#3671C6", "position": 2, "gap": 2.1, "interval": 2.1, "compound": "MEDIUM", "stintStart": 30, "pitLap": 29, "lapTimes": [69.12,69.08,69.04,69.01,69.00,68.99,69.03,68.98,68.97,68.95,68.96,68.94] },
+      { "number": 16, "code": "LEC", "name": "Charles Leclerc", "team": "Ferrari", "color": "#E8002D", "position": 3, "gap": 8.4, "interval": 6.3, "compound": "HARD", "stintStart": 36, "pitLap": 35, "lapTimes": [69.42,69.38,69.35,69.31,69.28,69.24,69.20,69.18,69.16,69.14,69.13,69.12] },
+      { "number": 81, "code": "PIA", "name": "Oscar Piastri", "team": "McLaren", "color": "#FF8700", "position": 4, "gap": 9.8, "interval": 1.4, "compound": "HARD", "stintStart": 36, "pitLap": 35, "lapTimes": [69.30,69.24,69.18,69.11,69.04,68.98,68.95,68.91,68.88,68.86,68.84,68.82] },
+      { "number": 63, "code": "RUS", "name": "George Russell", "team": "Mercedes", "color": "#27F4D2", "position": 5, "gap": 15.1, "interval": 5.3, "compound": "MEDIUM", "stintStart": 33, "pitLap": 32, "lapTimes": [69.18,69.17,69.15,69.14,69.13,69.14,69.12,69.11,69.13,69.12,69.10,69.11] },
+      { "number": 44, "code": "HAM", "name": "Lewis Hamilton", "team": "Mercedes", "color": "#27F4D2", "position": 6, "gap": 17.5, "interval": 2.4, "compound": "MEDIUM", "stintStart": 34, "pitLap": 33, "lapTimes": [69.20,69.18,69.17,69.16,69.15,69.13,69.14,69.12,69.11,69.10,69.09,69.08] },
+      { "number": 14, "code": "ALO", "name": "Fernando Alonso", "team": "Aston Martin", "color": "#229971", "position": 7, "gap": 24.9, "interval": 7.4, "compound": "HARD", "stintStart": 28, "pitLap": 27, "lapTimes": [69.61,69.57,69.55,69.52,69.51,69.49,69.47,69.45,69.44,69.43,69.42,69.41] },
+      { "number": 10, "code": "GAS", "name": "Pierre Gasly", "team": "Alpine", "color": "#FF87BC", "position": 8, "gap": 26.6, "interval": 1.7, "compound": "HARD", "stintStart": 28, "pitLap": 27, "lapTimes": [69.70,69.64,69.60,69.55,69.50,69.46,69.42,69.39,69.36,69.34,69.32,69.30] }
+    ]
+  }
+}

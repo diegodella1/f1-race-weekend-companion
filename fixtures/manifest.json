@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "sessions": [
+    {
+      "id": "session:replay:demo-race-2024",
+      "name": "Austrian Grand Prix",
+      "kind": "race",
+      "fixture": "2024-demo-race.json",
+      "events": "2024-demo-race.ndjson",
+      "durationMs": 5000
+    }
+  ]
+}
