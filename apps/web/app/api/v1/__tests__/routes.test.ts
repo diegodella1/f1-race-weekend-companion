@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { GET as getSnapshot } from '../sessions/[id]/snapshot/route';
+import { GET as getDataHealth } from '../health/data/route';
 import { POST as controlReplay } from '../replay/control/route';
 
 const sessionId = 'session:replay:demo-race-2024';
@@ -30,5 +31,13 @@ describe('BFF integration', () => {
     );
     expect(response.status).toBe(400);
     await expect(response.json()).resolves.toMatchObject({ code: 'INVALID_DELAY', retryable: false });
+  });
+
+  it('primes a new replay runtime before reporting data health', async () => {
+    const response = await getDataHealth(new Request('http://localhost/api/v1/health/data', {
+      headers: { cookie: `f1c_replay_run=${crypto.randomUUID()}` }
+    }));
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toMatchObject({ provider: 'replay', state: 'fresh' });
   });
 });

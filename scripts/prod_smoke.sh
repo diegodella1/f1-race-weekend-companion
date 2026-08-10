@@ -13,6 +13,7 @@ node -e '
 const health = JSON.parse(process.argv[1]);
 const snapshot = JSON.parse(process.argv[2]);
 if (health.provider !== "replay") throw new Error("Unexpected provider");
+if (health.state !== "fresh" || !health.lastSuccessAt) throw new Error("Replay health is not fresh");
 if (!Array.isArray(snapshot.drivers) || snapshot.drivers.length < 8) throw new Error("Incomplete replay snapshot");
 if (!Array.isArray(snapshot.battles)) throw new Error("Derived battles missing");
 ' "$health" "$snapshot"

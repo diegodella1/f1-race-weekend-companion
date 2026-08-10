@@ -158,7 +158,7 @@ pnpm smoke:openf1
 
 Cobertura funcional actual:
 
-- 40 tests unitarios/integración en 11 suites.
+- 41 tests unitarios/integración en 11 suites.
 - 6 escenarios E2E en Chromium móvil y desktop.
 - Payloads parciales/malformados, cache, coalescing, circuit breaker y replay clock.
 - Métricas de pace, closing rate, catch range, DRS, tyre age, confianza, rejoin y undercut.
