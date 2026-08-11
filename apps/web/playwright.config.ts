@@ -16,6 +16,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'pnpm dev',
+    env: { SEASON_CATALOG_SYNC: 'off' },
     url: 'http://127.0.0.1:3000/weekend',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000

@@ -11,10 +11,10 @@ The implementation treats the archive as presentation guidance, while the PRD an
 | `race_dashboard_apex_edition` | `/weekend` race mode | classified drivers, intervals, compounds, tyre age, clean-lap pace, battles | speed, gear, throttle, brake, fabricated positions |
 | `live_control_apex_edition` | `/weekend` header, Race Control, replay and Explain | track status, lap, replay clock, priority messages, deterministic insights | team radio, broadcast controls, unsupported live telemetry |
 | `strategy_analysis_apex_edition` | `/strategy?a=&b=` | shared clean laps, stints, tyre age, strategy signals, pit projections, confidence | invented pit windows, weather assumptions, unlabeled certainty |
-| `interactive_track_map_apex_edition` | `/track` | local layout, length, laps, pit-loss estimate, DRS metadata, measured sector leaders | animated car positions, weather, missing circuit telemetry |
+| `interactive_track_map_apex_edition` | `/track` and `/season/circuits/:id` | verified Formula 1 circuit image, supplied metrics, measured sector leaders | hand-drawn layouts, animated car positions, weather, missing telemetry |
 | `performance_analysis_apex_edition` | `/compare?a=&b=` and driver detail | best/last/clean laps, sectors, gaps, stints | photos, speed traces, throttle/brake traces |
 | `standings_apex_edition` | practice, qualifying and post-race session classification | current session order and supplied final/provisional state | season standings, championship points, inferred official results |
-| `weekend_hub_apex_edition` | scheduled/pre-live `/weekend` state | meeting, circuit, session schedule, next meeting | news, annual calendar expansion, unsupported forecasts |
+| `weekend_hub_apex_edition` | scheduled/pre-live `/weekend` state and `/season` catalog | meeting, circuit, session schedule, verified 2026 calendar and entry list | news, championship standings, unsupported forecasts |
 
 ## Implemented visual contract
 
@@ -30,6 +30,7 @@ The implementation treats the archive as presentation guidance, while the PRD an
 - SC, VSC and red flag disable predictive widgets rather than presenting stale confidence.
 - Derived numbers retain evidence and confidence labels.
 - No annual standings, weather, radio, driver photography, or telemetry is synthesized.
+- Circuit images must match the approved Formula 1 Media URL. Load failure or URL drift renders an explicit unavailable state, never a substitute outline.
 
 ## Reproducible review
 
@@ -40,4 +41,4 @@ AUDIT_BASE_URL=http://127.0.0.1:3000 pnpm audit:ui
 VISUAL_BASE_URL=http://127.0.0.1:3000 pnpm visual:capture
 ```
 
-The audit covers Weekend, Strategy, Track, Compare, and Settings at 320 and 1280 pixels. Captures are written to `/tmp/f1-visuals` by default.
+The audit also covers Season indexes and a circuit profile at 320 and 1280 pixels. Captures are written to `/tmp/f1-visuals` by default.

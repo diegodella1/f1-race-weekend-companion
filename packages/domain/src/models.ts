@@ -168,6 +168,9 @@ export const meetingSchema = z.object({
   circuitName: z.string(),
   startsAt: z.iso.datetime(),
   endsAt: z.iso.datetime(),
+  isCancelled: z.boolean().optional(),
+  circuitImageUrl: z.string().url().nullable().optional(),
+  circuitInfoUrl: z.string().url().nullable().optional(),
   sessions: z.array(sessionSummarySchema),
   nextMeeting: z.object({ id: z.string(), name: z.string(), startsAt: z.iso.datetime() }).optional()
 });
@@ -181,7 +184,10 @@ export const trackSchema = z.object({
   pitLossSec: z.number().positive().nullable(),
   drsZones: z.array(z.string()),
   sectors: z.array(z.string()),
-  layoutPath: z.string().nullable()
+  layoutPath: z.string().nullable(),
+  layoutSourceUrl: z.string().url().nullable().optional(),
+  layoutVerifiedAt: z.iso.datetime().nullable().optional(),
+  layoutStatus: z.enum(['verified', 'pending', 'unavailable']).optional()
 });
 
 export const dataHealthSchema = z.object({

@@ -81,7 +81,7 @@ export class OpenF1Adapter implements TimingProvider {
     }));
     const sorted = normalized.filter((meeting): meeting is Meeting => meeting !== null).sort((a, b) => a.startsAt.localeCompare(b.startsAt));
     return sorted.map((meeting, index) => {
-      const next = sorted[index + 1];
+      const next = sorted.slice(index + 1).find((candidate) => !candidate.isCancelled);
       return next ? { ...meeting, nextMeeting: { id: next.id, name: next.name, startsAt: next.startsAt } } : meeting;
     });
   }
@@ -256,8 +256,22 @@ function normalizeMeeting(raw: RawRecord, sessions: SessionSummary[]): Meeting |
     circuitName,
     startsAt,
     endsAt,
+    isCancelled: boolean(raw.is_cancelled),
+    circuitImageUrl: safeUrl(raw.circuit_image, 'media.formula1.com'),
+    circuitInfoUrl: safeUrl(raw.circuit_info_url),
     sessions
   };
+}
+
+function safeUrl(value: unknown, hostname?: string): string | null {
+  const candidate = text(value);
+  if (!candidate) return null;
+  try {
+    const url = new URL(candidate);
+    return url.protocol === 'https:' && (!hostname || url.hostname === hostname) ? url.toString() : null;
+  } catch {
+    return null;
+  }
 }
 
 function normalizeSession(raw: RawRecord, now: Date): SessionSummary | null {

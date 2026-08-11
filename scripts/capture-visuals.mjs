@@ -7,6 +7,8 @@ const cases = [
   { name: 'weekend-phone', path: '/weekend', viewport: { width: 393, height: 852 } },
   { name: 'strategy-phone', path: '/strategy', viewport: { width: 393, height: 852 } },
   { name: 'track-tablet', path: '/track', viewport: { width: 768, height: 1024 } },
+  { name: 'season-circuits-desktop', path: '/season', viewport: { width: 1280, height: 900 } },
+  { name: 'season-drivers-phone', path: '/season?view=drivers', viewport: { width: 393, height: 852 } },
   { name: 'compare-desktop', path: '/compare', viewport: { width: 1280, height: 900 } },
   { name: 'settings-small', path: '/settings', viewport: { width: 320, height: 700 } }
 ];

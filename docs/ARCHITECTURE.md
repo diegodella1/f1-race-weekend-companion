@@ -14,6 +14,8 @@ El sistema debe seguir siendo útil con datos incompletos, explicar cada inferen
 6. El BFF entrega REST o SSE; la UI aplica patches sólo si su revisión es la esperada.
 7. Si SSE cae, TanStack Query consulta snapshot cada 10 segundos.
 
+El catálogo de temporada sigue otra ruta: respaldo JSON validado por Zod → sync OpenF1 cada 24 horas → comparación contra manifest de imágenes aprobado → Server Components y API `/season/2026`. Un mapa nuevo o modificado no se publica automáticamente.
+
 ## Fronteras
 
 - `domain` no conoce HTTP, Next.js ni proveedores.
@@ -29,7 +31,7 @@ SC, VSC y bandera roja hacen que proyecciones sensibles queden deshabilitadas. U
 
 ## Aislamiento de replay
 
-`proxy.ts` crea la cookie anónima `f1c_replay_run`. El runtime mantiene hasta 100 instancias LRU asociadas a esa cookie. OpenF1 usa un runtime compartido porque representa una fuente global; replay no.
+`proxy.ts` crea la cookie anónima `f1c_replay_run`. El runtime mantiene hasta 100 instancias LRU asociadas a esa cookie. Todas comparten el fixture parseado e inmutable, pero conservan controles de reproducción independientes. OpenF1 usa un runtime compartido porque representa una fuente global.
 
 ## Resiliencia
 
@@ -37,6 +39,7 @@ SC, VSC y bandera roja hacen que proyecciones sensibles queden deshabilitadas. U
 - Cache LRU sirve último dato sano dentro de límites definidos.
 - Circuit breaker reduce presión sobre un upstream degradado.
 - OpenF1 aplica pacing, `Retry-After` y reintentos acotados.
+- El catálogo conserva el último respaldo sano si sync falla, queda incompleto o cambia una imagen.
 - SSE emite health y heartbeat y se reconecta desde el cliente.
 - Service worker usa network-first para navegación/snapshot y cache-first para assets.
 

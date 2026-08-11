@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { expect, test, type APIRequestContext } from '@playwright/test';
 
-const sessionId = 'session:replay:demo-race-2024';
+const sessionId = 'session:replay:hungary-race-2026';
 test.setTimeout(90_000);
 
 test.beforeEach(async ({ page, context, baseURL }) => {
@@ -18,14 +18,14 @@ test.beforeEach(async ({ page, context, baseURL }) => {
 });
 
 test('replay boots, persists favorite, and opens comparison', async ({ page }) => {
-  await expect(page.getByRole('heading', { name: 'Austrian GP' })).toBeVisible();
-  await expect(page.getByText('DEMO REPLAY')).toBeVisible();
-  await expect(page.getByRole('table', { name: /current race order/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Hungarian Grand Prix' })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByText(/REPLAY:OPENF1/)).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole('table', { name: /current race order/i })).toBeVisible({ timeout: 15_000 });
 
   await page.goto('/settings');
-  await page.getByLabel('Favorite driver').selectOption('driver:81:2024');
+  await page.getByLabel('Favorite driver').selectOption('driver:81:2026');
   await page.reload();
-  await expect(page.getByLabel('Favorite driver')).toHaveValue('driver:81:2024');
+  await expect(page.getByLabel('Favorite driver')).toHaveValue('driver:81:2026');
   await page.goto('/weekend');
   await expect(page.getByText('YOUR DRIVER').locator('..')).toContainText('PIA');
 
@@ -44,22 +44,42 @@ test('strategy route exposes real analysis and active navigation', async ({ page
   await expect(page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'Strategy' })).toHaveAttribute('aria-current', 'page');
 });
 
-test('VSC disables predictive widgets and explains status change', async ({ page, context }) => {
+test('replay exposes the real yellow-flag event without inventing a safety car', async ({ page, context }) => {
   await expect(page.locator('#battles').getByText(/Gap/).first()).toBeVisible();
   await controlReplay(context.request, { action: 'seek', atMs: 2100 });
   await page.reload({ waitUntil: 'domcontentloaded' });
-  await expect(page.getByText('Virtual Safety Car', { exact: true }).first()).toBeVisible();
-  await expect(page.locator('#battles')).toContainText('Predictions paused');
-  await page.getByRole('button', { name: /what matters now/i }).click();
-  await expect(page.getByRole('dialog')).toContainText('Virtual Safety Car');
+  await expect(page.getByText('Yellow flag', { exact: true }).first()).toBeVisible();
+  await expect(page.getByText('YELLOW IN TRACK SECTOR 8', { exact: true })).toBeVisible();
 });
 
 test('replay reaches provisional post-race', async ({ page, context }) => {
   await controlReplay(context.request, { action: 'seek', atMs: 5000 });
   await page.reload({ waitUntil: 'domcontentloaded' });
   await expect(page.getByText('PROVISIONAL RESULT')).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Austrian GP' })).toBeVisible();
-  await expect(page.getByText(/British GP/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Hungarian Grand Prix' })).toBeVisible();
+  await expect(page.getByText(/Dutch Grand Prix/)).toBeVisible();
+});
+
+test('season directory exposes every 2026 circuit, driver, and team', async ({ page }) => {
+  await page.goto('/season');
+  await expect(page.getByRole('heading', { name: /season 2026/i })).toBeVisible();
+  await expect(page.locator('.season-grid--circuits > li')).toHaveCount(25);
+  await page.getByRole('link', { name: 'drivers', exact: true }).click();
+  await expect(page.locator('.season-grid--drivers > li')).toHaveCount(22);
+  await page.getByRole('link', { name: 'teams', exact: true }).click();
+  await expect(page.locator('.season-grid--teams > li')).toHaveCount(11);
+});
+
+test('official circuit profile never labels a substitute drawing as verified', async ({ page }) => {
+  await page.goto('/season/circuits/track%3Aopenf1%3A4');
+  await expect(page.getByRole('heading', { name: 'Hungaroring' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Official circuit map' })).toBeVisible();
+  await expect(page.getByText('verified', { exact: true })).toBeVisible();
+  await expect(page.getByRole('img', { name: /official formula 1 circuit map for hungaroring/i })).toBeVisible();
+  await page.goto('/season/circuits/track%3Aopenf1%3A153');
+  await expect(page.getByRole('heading', { name: 'Madring' })).toBeVisible();
+  await expect(page.getByText('Official map unavailable', { exact: true })).toBeVisible();
+  await expect(page.getByRole('img', { name: /madring/i })).toHaveCount(0);
 });
 
 async function controlReplay(request: APIRequestContext, command: Record<string, string | number>) {

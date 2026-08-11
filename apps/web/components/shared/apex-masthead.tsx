@@ -8,7 +8,7 @@ export function ApexBrandBar() {
         <span className="apex-brand__mark"><ApexIcon name="speed" /></span>
         <span><b>F1</b><small>Companion</small></span>
       </Link>
-      <Link className="apex-live-link" href="/weekend"><i aria-hidden="true" />F1 Live</Link>
+      <div className="apex-masthead-links"><Link className="apex-live-link" href="/weekend"><i aria-hidden="true" />F1 Live</Link><Link className="apex-season-link" href="/season">Season 2026</Link></div>
       <Link className="apex-icon-button" href="/settings" aria-label="Settings"><ApexIcon name="settings" /></Link>
     </div>
   );

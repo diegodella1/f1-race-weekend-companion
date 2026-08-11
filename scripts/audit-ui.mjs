@@ -2,7 +2,7 @@ import { chromium } from '@playwright/test';
 import axe from 'axe-core';
 
 const baseUrl = process.env.AUDIT_BASE_URL ?? 'http://127.0.0.1:3000';
-const pages = ['/weekend', '/strategy', '/track', '/compare', '/settings'];
+const pages = ['/weekend', '/strategy', '/track', '/compare', '/settings', '/season', '/season?view=drivers', '/season?view=teams', '/season/circuits/track%3Aopenf1%3A4'];
 const viewports = [{ width: 320, height: 700 }, { width: 1280, height: 900 }];
 const browser = await chromium.launch({ headless: true });
 const failures = [];

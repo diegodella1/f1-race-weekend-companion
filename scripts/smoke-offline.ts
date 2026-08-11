@@ -19,7 +19,7 @@ try {
     throw new Error(`Installability errors: ${installability.installabilityErrors.map((error) => error.errorId).join(', ')}`);
   }
   await page.evaluate(async () => {
-    const response = await fetch('/api/v1/sessions/session%3Areplay%3Ademo-race-2024/snapshot');
+    const response = await fetch('/api/v1/sessions/session%3Areplay%3Ahungary-race-2026/snapshot');
     if (!response.ok) throw new Error(`Snapshot warm-up failed (${response.status})`);
   });
 
@@ -27,7 +27,7 @@ try {
   await page.reload({ waitUntil: 'domcontentloaded' });
   await page.locator('#leaderboard-title').waitFor({ state: 'visible' });
   const drivers = await page.locator('.leaderboard tbody tr').count();
-  if (drivers < 8) throw new Error(`Offline timing tower rendered only ${drivers} drivers`);
+  if (drivers !== 22) throw new Error(`Offline timing tower rendered ${drivers} of 22 drivers`);
 
   console.log(JSON.stringify({ installable: true, offline: true, shell: true, cachedDrivers: drivers }));
 } finally {

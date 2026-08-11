@@ -1,0 +1,998 @@
+{
+  "schemaVersion": 1,
+  "season": 2026,
+  "generatedAt": "2026-08-11T02:04:25.179Z",
+  "sources": [
+    {
+      "name": "Formula 1 2026 calendar",
+      "url": "https://www.formula1.com/en/racing/2026",
+      "role": "calendar"
+    },
+    {
+      "name": "FIA 2026 entry list",
+      "url": "https://www.fia.com/events/fia-formula-one-world-championship/season-2026/2026-fia-formula-one-world-championship-entry",
+      "role": "entry_list"
+    },
+    {
+      "name": "OpenF1 historical data",
+      "url": "https://openf1.org/docs/",
+      "role": "telemetry"
+    },
+    {
+      "name": "Formula 1 circuit media",
+      "url": "https://media.formula1.com/",
+      "role": "circuit_image"
+    }
+  ],
+  "events": [
+    {
+      "id": "meeting:openf1:1279",
+      "meetingKey": 1279,
+      "name": "Australian Grand Prix",
+      "officialName": "FORMULA 1 QATAR AIRWAYS AUSTRALIAN GRAND PRIX 2026",
+      "circuitId": "track:openf1:10",
+      "startsAt": "2026-03-06T01:30:00.000Z",
+      "endsAt": "2026-03-08T06:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1280",
+      "meetingKey": 1280,
+      "name": "Chinese Grand Prix",
+      "officialName": "FORMULA 1 HEINEKEN CHINESE GRAND PRIX 2026",
+      "circuitId": "track:openf1:49",
+      "startsAt": "2026-03-13T03:30:00.000Z",
+      "endsAt": "2026-03-15T09:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1281",
+      "meetingKey": 1281,
+      "name": "Japanese Grand Prix",
+      "officialName": "FORMULA 1 ARAMCO JAPANESE GRAND PRIX 2026",
+      "circuitId": "track:openf1:46",
+      "startsAt": "2026-03-27T02:30:00.000Z",
+      "endsAt": "2026-03-29T07:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1282",
+      "meetingKey": 1282,
+      "name": "Bahrain Grand Prix",
+      "officialName": "FORMULA 1 GULF AIR BAHRAIN GRAND PRIX 2026",
+      "circuitId": "track:openf1:63",
+      "startsAt": "2026-04-10T11:30:00.000Z",
+      "endsAt": "2026-04-12T17:00:00.000Z",
+      "status": "cancelled"
+    },
+    {
+      "id": "meeting:openf1:1283",
+      "meetingKey": 1283,
+      "name": "Saudi Arabian Grand Prix",
+      "officialName": "FORMULA 1 STC SAUDI ARABIAN GRAND PRIX 2026",
+      "circuitId": "track:openf1:149",
+      "startsAt": "2026-04-17T13:30:00.000Z",
+      "endsAt": "2026-04-19T19:00:00.000Z",
+      "status": "cancelled"
+    },
+    {
+      "id": "meeting:openf1:1284",
+      "meetingKey": 1284,
+      "name": "Miami Grand Prix",
+      "officialName": "FORMULA 1 CRYPTO.COM MIAMI GRAND PRIX 2026",
+      "circuitId": "track:openf1:151",
+      "startsAt": "2026-05-01T16:00:00.000Z",
+      "endsAt": "2026-05-03T19:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1285",
+      "meetingKey": 1285,
+      "name": "Canadian Grand Prix",
+      "officialName": "FORMULA 1 LENOVO GRAND PRIX DU CANADA 2026",
+      "circuitId": "track:openf1:23",
+      "startsAt": "2026-05-22T16:30:00.000Z",
+      "endsAt": "2026-05-24T22:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1286",
+      "meetingKey": 1286,
+      "name": "Monaco Grand Prix",
+      "officialName": "FORMULA 1 LOUIS VUITTON GRAND PRIX DE MONACO 2026",
+      "circuitId": "track:openf1:22",
+      "startsAt": "2026-06-05T11:30:00.000Z",
+      "endsAt": "2026-06-07T15:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1287",
+      "meetingKey": 1287,
+      "name": "Barcelona Grand Prix",
+      "officialName": "FORMULA 1 MSC CRUISES GRAN PREMIO DE BARCELONA-CATALUNYA 2026",
+      "circuitId": "track:openf1:15",
+      "startsAt": "2026-06-12T11:30:00.000Z",
+      "endsAt": "2026-06-14T15:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1288",
+      "meetingKey": 1288,
+      "name": "Austrian Grand Prix",
+      "officialName": "FORMULA 1 LENOVO AUSTRIAN GRAND PRIX 2026",
+      "circuitId": "track:openf1:19",
+      "startsAt": "2026-06-26T11:30:00.000Z",
+      "endsAt": "2026-06-28T15:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1289",
+      "meetingKey": 1289,
+      "name": "British Grand Prix",
+      "officialName": "FORMULA 1 PIRELLI BRITISH GRAND PRIX 2026",
+      "circuitId": "track:openf1:2",
+      "startsAt": "2026-07-03T11:30:00.000Z",
+      "endsAt": "2026-07-05T16:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1290",
+      "meetingKey": 1290,
+      "name": "Belgian Grand Prix",
+      "officialName": "FORMULA 1 MOËT & CHANDON BELGIAN GRAND PRIX 2026",
+      "circuitId": "track:openf1:7",
+      "startsAt": "2026-07-17T11:30:00.000Z",
+      "endsAt": "2026-07-19T15:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1291",
+      "meetingKey": 1291,
+      "name": "Hungarian Grand Prix",
+      "officialName": "FORMULA 1 AWS HUNGARIAN GRAND PRIX 2026",
+      "circuitId": "track:openf1:4",
+      "startsAt": "2026-07-24T11:30:00.000Z",
+      "endsAt": "2026-07-26T15:00:00.000Z",
+      "status": "completed"
+    },
+    {
+      "id": "meeting:openf1:1292",
+      "meetingKey": 1292,
+      "name": "Dutch Grand Prix",
+      "officialName": "FORMULA 1 HEINEKEN DUTCH GRAND PRIX 2026",
+      "circuitId": "track:openf1:55",
+      "startsAt": "2026-08-21T10:30:00.000Z",
+      "endsAt": "2026-08-23T15:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1293",
+      "meetingKey": 1293,
+      "name": "Italian Grand Prix",
+      "officialName": "FORMULA 1 PIRELLI GRAN PREMIO D’ITALIA 2026",
+      "circuitId": "track:openf1:39",
+      "startsAt": "2026-09-04T10:30:00.000Z",
+      "endsAt": "2026-09-06T15:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1294",
+      "meetingKey": 1294,
+      "name": "Spanish Grand Prix",
+      "officialName": "FORMULA 1 TAG HEUER GRAN PREMIO DE ESPAÑA 2026",
+      "circuitId": "track:openf1:153",
+      "startsAt": "2026-09-11T11:30:00.000Z",
+      "endsAt": "2026-09-13T15:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1295",
+      "meetingKey": 1295,
+      "name": "Azerbaijan Grand Prix",
+      "officialName": "FORMULA 1 QATAR AIRWAYS AZERBAIJAN GRAND PRIX 2026",
+      "circuitId": "track:openf1:144",
+      "startsAt": "2026-09-24T08:30:00.000Z",
+      "endsAt": "2026-09-26T13:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1308",
+      "meetingKey": 1308,
+      "name": "Bahrain Grand Prix",
+      "officialName": "FORMULA 1 GULF AIR BAHRAIN GRAND PRIX IN MALAYSIA 2026",
+      "circuitId": "track:openf1:12",
+      "startsAt": "2026-10-02T04:30:00.000Z",
+      "endsAt": "2026-10-04T09:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1296",
+      "meetingKey": 1296,
+      "name": "Singapore Grand Prix",
+      "officialName": "FORMULA 1 SINGAPORE AIRLINES SINGAPORE GRAND PRIX 2026",
+      "circuitId": "track:openf1:61",
+      "startsAt": "2026-10-09T08:30:00.000Z",
+      "endsAt": "2026-10-11T14:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1297",
+      "meetingKey": 1297,
+      "name": "United States Grand Prix",
+      "officialName": "FORMULA 1 MSC CRUISES UNITED STATES GRAND PRIX 2026",
+      "circuitId": "track:openf1:9",
+      "startsAt": "2026-10-23T17:30:00.000Z",
+      "endsAt": "2026-10-25T22:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1298",
+      "meetingKey": 1298,
+      "name": "Mexico City Grand Prix",
+      "officialName": "FORMULA 1 GRAN PREMIO DE LA CIUDAD DE MÉXICO 2026",
+      "circuitId": "track:openf1:65",
+      "startsAt": "2026-10-30T18:30:00.000Z",
+      "endsAt": "2026-11-01T22:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1299",
+      "meetingKey": 1299,
+      "name": "São Paulo Grand Prix",
+      "officialName": "FORMULA 1 MSC CRUISES GRANDE PRÊMIO DE SÃO PAULO 2026",
+      "circuitId": "track:openf1:14",
+      "startsAt": "2026-11-06T15:30:00.000Z",
+      "endsAt": "2026-11-08T19:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1300",
+      "meetingKey": 1300,
+      "name": "Las Vegas Grand Prix",
+      "officialName": "FORMULA 1 HEINEKEN LAS VEGAS GRAND PRIX 2026",
+      "circuitId": "track:openf1:152",
+      "startsAt": "2026-11-20T00:30:00.000Z",
+      "endsAt": "2026-11-22T06:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1301",
+      "meetingKey": 1301,
+      "name": "Qatar Grand Prix",
+      "officialName": "FORMULA 1 QATAR AIRWAYS QATAR GRAND PRIX 2026",
+      "circuitId": "track:openf1:150",
+      "startsAt": "2026-11-27T13:30:00.000Z",
+      "endsAt": "2026-11-29T18:00:00.000Z",
+      "status": "scheduled"
+    },
+    {
+      "id": "meeting:openf1:1302",
+      "meetingKey": 1302,
+      "name": "Abu Dhabi Grand Prix",
+      "officialName": "FORMULA 1 ETIHAD AIRWAYS ABU DHABI GRAND PRIX 2026",
+      "circuitId": "track:openf1:70",
+      "startsAt": "2026-12-04T09:30:00.000Z",
+      "endsAt": "2026-12-06T15:00:00.000Z",
+      "status": "scheduled"
+    }
+  ],
+  "circuits": [
+    {
+      "id": "track:openf1:10",
+      "circuitKey": 10,
+      "name": "Melbourne",
+      "location": "Melbourne",
+      "countryCode": "AUS",
+      "countryName": "Australia",
+      "type": "Street",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Australia%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Australia%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Australia%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:49",
+      "circuitKey": 49,
+      "name": "Shanghai",
+      "location": "Shanghai",
+      "countryCode": "CHN",
+      "countryName": "China",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/China%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/China%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/China%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:46",
+      "circuitKey": 46,
+      "name": "Suzuka",
+      "location": "Suzuka",
+      "countryCode": "JPN",
+      "countryName": "Japan",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Japan%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Japan%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Japan%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:63",
+      "circuitKey": 63,
+      "name": "Sakhir",
+      "location": "Sakhir",
+      "countryCode": "BRN",
+      "countryName": "Bahrain",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Bahrain%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Bahrain%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Bahrain%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:149",
+      "circuitKey": 149,
+      "name": "Jeddah",
+      "location": "Jeddah",
+      "countryCode": "KSA",
+      "countryName": "Saudi Arabia",
+      "type": "Street",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Saudi%20Arabia%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Saudi%20Arabia%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Saudi%20Arabia%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:151",
+      "circuitKey": 151,
+      "name": "Miami",
+      "location": "Miami Gardens",
+      "countryCode": "USA",
+      "countryName": "United States",
+      "type": "Street",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Miami%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Miami%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Miami%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:23",
+      "circuitKey": 23,
+      "name": "Montreal",
+      "location": "Montréal",
+      "countryCode": "CAN",
+      "countryName": "Canada",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Canada%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Canada%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Canada%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:22",
+      "circuitKey": 22,
+      "name": "Monte Carlo",
+      "location": "Monte Carlo",
+      "countryCode": "MON",
+      "countryName": "Monaco",
+      "type": "Street",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Monaco%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Monaco%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Monaco%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:15",
+      "circuitKey": 15,
+      "name": "Catalunya",
+      "location": "Barcelona",
+      "countryCode": "ESP",
+      "countryName": "Spain",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Barcelona-Catalunya%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Spain%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Spain%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:19",
+      "circuitKey": 19,
+      "name": "Spielberg",
+      "location": "Spielberg",
+      "countryCode": "AUT",
+      "countryName": "Austria",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Austria%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Austria%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Austria%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:2",
+      "circuitKey": 2,
+      "name": "Silverstone",
+      "location": "Silverstone",
+      "countryCode": "GBR",
+      "countryName": "United Kingdom",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Great%20Britain%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Great%20Britain%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Great%20Britain%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:7",
+      "circuitKey": 7,
+      "name": "Spa-Francorchamps",
+      "location": "Spa-Francorchamps",
+      "countryCode": "BEL",
+      "countryName": "Belgium",
+      "type": "Temporary",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Belgium%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Belgium%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Belgium%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:4",
+      "circuitKey": 4,
+      "name": "Hungaroring",
+      "location": "Budapest",
+      "countryCode": "HUN",
+      "countryName": "Hungary",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Hungary%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Hungary%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Hungary%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:55",
+      "circuitKey": 55,
+      "name": "Zandvoort",
+      "location": "Zandvoort",
+      "countryCode": "NED",
+      "countryName": "Netherlands",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Netherlands%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Netherlands%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Netherlands%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:39",
+      "circuitKey": 39,
+      "name": "Monza",
+      "location": "Monza",
+      "countryCode": "ITA",
+      "countryName": "Italy",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Italy%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Italy%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Italy%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:153",
+      "circuitKey": 153,
+      "name": "Madring",
+      "location": "Madrid",
+      "countryCode": "ESP",
+      "countryName": "Spain",
+      "type": "Street",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Spain%20carbon.png",
+      "layoutImageUrl": null,
+      "layoutSourceUrl": null,
+      "layoutStatus": "unavailable",
+      "layoutVerifiedAt": null
+    },
+    {
+      "id": "track:openf1:144",
+      "circuitKey": 144,
+      "name": "Baku",
+      "location": "Baku",
+      "countryCode": "AZE",
+      "countryName": "Azerbaijan",
+      "type": "Street",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Azerbaijan%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Azerbaijan%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Azerbaijan%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:12",
+      "circuitKey": 12,
+      "name": "Kuala Lumpur",
+      "location": "Kuala Lumpur",
+      "countryCode": "BRN",
+      "countryName": "Bahrain",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Bahrain%20carbon.png",
+      "layoutImageUrl": null,
+      "layoutSourceUrl": null,
+      "layoutStatus": "unavailable",
+      "layoutVerifiedAt": null
+    },
+    {
+      "id": "track:openf1:61",
+      "circuitKey": 61,
+      "name": "Singapore",
+      "location": "Marina Bay",
+      "countryCode": "SGP",
+      "countryName": "Singapore",
+      "type": "Street",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Singapore%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Singapore%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Singapore%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:9",
+      "circuitKey": 9,
+      "name": "Austin",
+      "location": "Austin",
+      "countryCode": "USA",
+      "countryName": "United States",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/United%20States%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/United%20States%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/United%20States%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:65",
+      "circuitKey": 65,
+      "name": "Mexico City",
+      "location": "Mexico City",
+      "countryCode": "MEX",
+      "countryName": "Mexico",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Mexico%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Mexico%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Mexico%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:14",
+      "circuitKey": 14,
+      "name": "Interlagos",
+      "location": "São Paulo",
+      "countryCode": "BRA",
+      "countryName": "Brazil",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Brazil%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Brazil%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Brazil%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:152",
+      "circuitKey": 152,
+      "name": "Las Vegas",
+      "location": "Las Vegas",
+      "countryCode": "USA",
+      "countryName": "United States",
+      "type": "Street",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Las%20Vegas%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Las%20Vegas%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Las%20Vegas%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:150",
+      "circuitKey": 150,
+      "name": "Lusail",
+      "location": "Lusail",
+      "countryCode": "QAT",
+      "countryName": "Qatar",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Qatar%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Qatar%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Qatar%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    },
+    {
+      "id": "track:openf1:70",
+      "circuitKey": 70,
+      "name": "Yas Marina Circuit",
+      "location": "Yas Marina",
+      "countryCode": "UAE",
+      "countryName": "United Arab Emirates",
+      "type": "Permanent",
+      "upstreamImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Abu%20Dhabi%20carbon.png",
+      "layoutImageUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Abu%20Dhabi%20carbon.png",
+      "layoutSourceUrl": "https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Abu%20Dhabi%20carbon.png",
+      "layoutStatus": "verified",
+      "layoutVerifiedAt": "2026-08-11T02:04:25.179Z"
+    }
+  ],
+  "drivers": [
+    {
+      "id": "driver:1:2026",
+      "number": 1,
+      "code": "NOR",
+      "fullName": "Lando Norris",
+      "firstName": "Lando",
+      "lastName": "Norris",
+      "countryCode": null,
+      "teamId": "team:mclaren:2026",
+      "teamName": "McLaren",
+      "teamColor": "#F47600"
+    },
+    {
+      "id": "driver:3:2026",
+      "number": 3,
+      "code": "VER",
+      "fullName": "Max Verstappen",
+      "firstName": "Max",
+      "lastName": "Verstappen",
+      "countryCode": null,
+      "teamId": "team:red-bull-racing:2026",
+      "teamName": "Red Bull Racing",
+      "teamColor": "#4781D7"
+    },
+    {
+      "id": "driver:5:2026",
+      "number": 5,
+      "code": "BOR",
+      "fullName": "Gabriel Bortoleto",
+      "firstName": "Gabriel",
+      "lastName": "Bortoleto",
+      "countryCode": null,
+      "teamId": "team:audi:2026",
+      "teamName": "Audi",
+      "teamColor": "#F50537"
+    },
+    {
+      "id": "driver:6:2026",
+      "number": 6,
+      "code": "HAD",
+      "fullName": "Isack Hadjar",
+      "firstName": "Isack",
+      "lastName": "Hadjar",
+      "countryCode": null,
+      "teamId": "team:red-bull-racing:2026",
+      "teamName": "Red Bull Racing",
+      "teamColor": "#4781D7"
+    },
+    {
+      "id": "driver:10:2026",
+      "number": 10,
+      "code": "GAS",
+      "fullName": "Pierre Gasly",
+      "firstName": "Pierre",
+      "lastName": "Gasly",
+      "countryCode": null,
+      "teamId": "team:alpine:2026",
+      "teamName": "Alpine",
+      "teamColor": "#00A1E8"
+    },
+    {
+      "id": "driver:11:2026",
+      "number": 11,
+      "code": "PER",
+      "fullName": "Sergio Perez",
+      "firstName": "Sergio",
+      "lastName": "Perez",
+      "countryCode": null,
+      "teamId": "team:cadillac:2026",
+      "teamName": "Cadillac",
+      "teamColor": "#909090"
+    },
+    {
+      "id": "driver:12:2026",
+      "number": 12,
+      "code": "ANT",
+      "fullName": "Kimi Antonelli",
+      "firstName": "Kimi",
+      "lastName": "Antonelli",
+      "countryCode": null,
+      "teamId": "team:mercedes:2026",
+      "teamName": "Mercedes",
+      "teamColor": "#00D7B6"
+    },
+    {
+      "id": "driver:14:2026",
+      "number": 14,
+      "code": "ALO",
+      "fullName": "Fernando Alonso",
+      "firstName": "Fernando",
+      "lastName": "Alonso",
+      "countryCode": null,
+      "teamId": "team:aston-martin:2026",
+      "teamName": "Aston Martin",
+      "teamColor": "#229971"
+    },
+    {
+      "id": "driver:16:2026",
+      "number": 16,
+      "code": "LEC",
+      "fullName": "Charles Leclerc",
+      "firstName": "Charles",
+      "lastName": "Leclerc",
+      "countryCode": null,
+      "teamId": "team:ferrari:2026",
+      "teamName": "Ferrari",
+      "teamColor": "#ED1131"
+    },
+    {
+      "id": "driver:18:2026",
+      "number": 18,
+      "code": "STR",
+      "fullName": "Lance Stroll",
+      "firstName": "Lance",
+      "lastName": "Stroll",
+      "countryCode": null,
+      "teamId": "team:aston-martin:2026",
+      "teamName": "Aston Martin",
+      "teamColor": "#229971"
+    },
+    {
+      "id": "driver:23:2026",
+      "number": 23,
+      "code": "ALB",
+      "fullName": "Alexander Albon",
+      "firstName": "Alexander",
+      "lastName": "Albon",
+      "countryCode": null,
+      "teamId": "team:williams:2026",
+      "teamName": "Williams",
+      "teamColor": "#1868DB"
+    },
+    {
+      "id": "driver:27:2026",
+      "number": 27,
+      "code": "HUL",
+      "fullName": "Nico Hulkenberg",
+      "firstName": "Nico",
+      "lastName": "Hulkenberg",
+      "countryCode": null,
+      "teamId": "team:audi:2026",
+      "teamName": "Audi",
+      "teamColor": "#F50537"
+    },
+    {
+      "id": "driver:30:2026",
+      "number": 30,
+      "code": "LAW",
+      "fullName": "Liam Lawson",
+      "firstName": "Liam",
+      "lastName": "Lawson",
+      "countryCode": null,
+      "teamId": "team:racing-bulls:2026",
+      "teamName": "Racing Bulls",
+      "teamColor": "#6C98FF"
+    },
+    {
+      "id": "driver:31:2026",
+      "number": 31,
+      "code": "OCO",
+      "fullName": "Esteban Ocon",
+      "firstName": "Esteban",
+      "lastName": "Ocon",
+      "countryCode": null,
+      "teamId": "team:haas-f1-team:2026",
+      "teamName": "Haas F1 Team",
+      "teamColor": "#9C9FA2"
+    },
+    {
+      "id": "driver:41:2026",
+      "number": 41,
+      "code": "LIN",
+      "fullName": "Arvid Lindblad",
+      "firstName": "Arvid",
+      "lastName": "Lindblad",
+      "countryCode": null,
+      "teamId": "team:racing-bulls:2026",
+      "teamName": "Racing Bulls",
+      "teamColor": "#6C98FF"
+    },
+    {
+      "id": "driver:43:2026",
+      "number": 43,
+      "code": "COL",
+      "fullName": "Franco Colapinto",
+      "firstName": "Franco",
+      "lastName": "Colapinto",
+      "countryCode": null,
+      "teamId": "team:alpine:2026",
+      "teamName": "Alpine",
+      "teamColor": "#00A1E8"
+    },
+    {
+      "id": "driver:44:2026",
+      "number": 44,
+      "code": "HAM",
+      "fullName": "Lewis Hamilton",
+      "firstName": "Lewis",
+      "lastName": "Hamilton",
+      "countryCode": null,
+      "teamId": "team:ferrari:2026",
+      "teamName": "Ferrari",
+      "teamColor": "#ED1131"
+    },
+    {
+      "id": "driver:55:2026",
+      "number": 55,
+      "code": "SAI",
+      "fullName": "Carlos Sainz",
+      "firstName": "Carlos",
+      "lastName": "Sainz",
+      "countryCode": null,
+      "teamId": "team:williams:2026",
+      "teamName": "Williams",
+      "teamColor": "#1868DB"
+    },
+    {
+      "id": "driver:63:2026",
+      "number": 63,
+      "code": "RUS",
+      "fullName": "George Russell",
+      "firstName": "George",
+      "lastName": "Russell",
+      "countryCode": null,
+      "teamId": "team:mercedes:2026",
+      "teamName": "Mercedes",
+      "teamColor": "#00D7B6"
+    },
+    {
+      "id": "driver:77:2026",
+      "number": 77,
+      "code": "BOT",
+      "fullName": "Valtteri Bottas",
+      "firstName": "Valtteri",
+      "lastName": "Bottas",
+      "countryCode": null,
+      "teamId": "team:cadillac:2026",
+      "teamName": "Cadillac",
+      "teamColor": "#909090"
+    },
+    {
+      "id": "driver:81:2026",
+      "number": 81,
+      "code": "PIA",
+      "fullName": "Oscar Piastri",
+      "firstName": "Oscar",
+      "lastName": "Piastri",
+      "countryCode": null,
+      "teamId": "team:mclaren:2026",
+      "teamName": "McLaren",
+      "teamColor": "#F47600"
+    },
+    {
+      "id": "driver:87:2026",
+      "number": 87,
+      "code": "BEA",
+      "fullName": "Oliver Bearman",
+      "firstName": "Oliver",
+      "lastName": "Bearman",
+      "countryCode": null,
+      "teamId": "team:haas-f1-team:2026",
+      "teamName": "Haas F1 Team",
+      "teamColor": "#9C9FA2"
+    }
+  ],
+  "teams": [
+    {
+      "id": "team:alpine:2026",
+      "name": "Alpine",
+      "color": "#00A1E8",
+      "driverIds": [
+        "driver:10:2026",
+        "driver:43:2026"
+      ]
+    },
+    {
+      "id": "team:aston-martin:2026",
+      "name": "Aston Martin",
+      "color": "#229971",
+      "driverIds": [
+        "driver:14:2026",
+        "driver:18:2026"
+      ]
+    },
+    {
+      "id": "team:audi:2026",
+      "name": "Audi",
+      "color": "#F50537",
+      "driverIds": [
+        "driver:5:2026",
+        "driver:27:2026"
+      ]
+    },
+    {
+      "id": "team:cadillac:2026",
+      "name": "Cadillac",
+      "color": "#909090",
+      "driverIds": [
+        "driver:11:2026",
+        "driver:77:2026"
+      ]
+    },
+    {
+      "id": "team:ferrari:2026",
+      "name": "Ferrari",
+      "color": "#ED1131",
+      "driverIds": [
+        "driver:16:2026",
+        "driver:44:2026"
+      ]
+    },
+    {
+      "id": "team:haas-f1-team:2026",
+      "name": "Haas F1 Team",
+      "color": "#9C9FA2",
+      "driverIds": [
+        "driver:31:2026",
+        "driver:87:2026"
+      ]
+    },
+    {
+      "id": "team:mclaren:2026",
+      "name": "McLaren",
+      "color": "#F47600",
+      "driverIds": [
+        "driver:1:2026",
+        "driver:81:2026"
+      ]
+    },
+    {
+      "id": "team:mercedes:2026",
+      "name": "Mercedes",
+      "color": "#00D7B6",
+      "driverIds": [
+        "driver:12:2026",
+        "driver:63:2026"
+      ]
+    },
+    {
+      "id": "team:racing-bulls:2026",
+      "name": "Racing Bulls",
+      "color": "#6C98FF",
+      "driverIds": [
+        "driver:30:2026",
+        "driver:41:2026"
+      ]
+    },
+    {
+      "id": "team:red-bull-racing:2026",
+      "name": "Red Bull Racing",
+      "color": "#4781D7",
+      "driverIds": [
+        "driver:3:2026",
+        "driver:6:2026"
+      ]
+    },
+    {
+      "id": "team:williams:2026",
+      "name": "Williams",
+      "color": "#1868DB",
+      "driverIds": [
+        "driver:23:2026",
+        "driver:55:2026"
+      ]
+    }
+  ]
+}

@@ -656,9 +656,9 @@ f1-companion/
 │  ├─ public/{icons,tracks}/
 │  └─ tests/e2e/
 ├─ packages/domain/src/{models,session-machine,metrics,insights}/
-├─ packages/providers/src/{types,openf1,replay,normalizers}/
+├─ packages/providers/src/{types,openf1,replay,season-catalog,normalizers}/
 ├─ packages/ui/src/
-├─ fixtures/{manifest.json,2024-demo-race.json,2024-demo-race.ndjson}
+├─ fixtures/{manifest.json,season-2026.json,2026-hungary-race.json,2026-hungary-race.ndjson}
 ├─ .env.example
 ├─ pnpm-workspace.yaml
 ├─ README.md
