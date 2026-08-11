@@ -5,6 +5,7 @@ import { useLiveSession } from '@/lib/client/use-live-session';
 import { formatCompound, formatGap, formatLapTime } from '@/lib/format';
 import { BottomNav } from '@/components/shared/bottom-nav';
 import { usePreferences } from '@/lib/client/preferences';
+import { ApexMasthead } from '@/components/shared/apex-masthead';
 
 export function SessionTableMode({ meeting, initialSnapshot }: { meeting: Meeting; initialSnapshot: SessionSnapshot }) {
   const favoriteDriverId = usePreferences((state) => state.favoriteDriverId);
@@ -13,6 +14,7 @@ export function SessionTableMode({ meeting, initialSnapshot }: { meeting: Meetin
   const cutoff = snapshot.segment === 'Q1' ? 15 : 10;
   return (
     <div className="app-shell">
+      <ApexMasthead />
       <main className="page-frame session-mode">
         <p className="eyebrow">{meeting.name}</p>
         <header><h1>{qualifying ? `Qualifying · ${snapshot.segment ?? 'Q1'}` : 'Practice'}</h1><strong>{snapshot.clockSeconds === null ? 'LIVE' : formatClock(snapshot.clockSeconds)}</strong></header>

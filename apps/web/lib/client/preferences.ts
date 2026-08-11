@@ -2,7 +2,8 @@
 
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { defaultPreferences, parsePreferences, type Preferences } from '@f1/domain';
+import type { Preferences } from '@f1/domain';
+import { defaultPreferences, parsePreferences } from '@f1/domain/preferences';
 
 interface PreferenceStore extends Preferences {
   setFavoriteDriverId(driverId: string | null): void;

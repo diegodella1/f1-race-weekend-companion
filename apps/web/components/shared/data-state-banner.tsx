@@ -1,11 +1,11 @@
 import type { DataHealth, SessionSnapshot } from '@f1/domain';
 
-export function DataStateBanner({ snapshot, health, streamConnected }: {
+export function DataStateBanner({ snapshot, healthState, streamConnected }: {
   snapshot: SessionSnapshot;
-  health: DataHealth | null;
+  healthState: DataHealth['state'] | null;
   streamConnected: boolean;
 }) {
-  const state = health?.state ?? (snapshot.meta.stale ? 'stale' : 'fresh');
+  const state = healthState ?? (snapshot.meta.stale ? 'stale' : 'fresh');
   if (state === 'fresh' && streamConnected) return null;
   const message = state === 'rate_limited'
     ? 'Provider is limiting updates · showing cached data'

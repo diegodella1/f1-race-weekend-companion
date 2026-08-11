@@ -1,10 +1,10 @@
 # F1 Race Weekend Companion
 
-PWA mobile-first para usar como segunda pantalla durante un fin de semana de Fórmula 1. Convierte timing crudo en contexto accionable: batallas, ritmo de vueltas limpias, neumáticos, ventanas de alcance, proyecciones de salida de boxes, mensajes de dirección de carrera y explicaciones determinísticas.
+PWA mobile-first para usar como segunda pantalla durante un fin de semana de Fórmula 1. Convierte timing crudo en contexto accionable: batallas, ritmo de vueltas limpias, neumáticos, ventanas de alcance, proyecciones de salida de boxes, mensajes de dirección de carrera y explicaciones determinísticas. La interfaz Apex Velocity combina un HUD oscuro de alta densidad con tipografía y visualizaciones locales, sin depender de CDNs.
 
 - **Producción:** [f1.diegodella.ar](https://f1.diegodella.ar/weekend)
 - **Modo público actual:** replay determinístico, sin login ni credenciales
-- **Estado:** release `1.0.0`
+- **Estado:** desplegado y operado como servicio productivo
 
 > Proyecto independiente y no afiliado, patrocinado ni aprobado por Formula 1, FIA, equipos o pilotos. Las marcas pertenecen a sus respectivos titulares.
 
@@ -13,8 +13,9 @@ PWA mobile-first para usar como segunda pantalla durante un fin de semana de Fó
 - Timing tower responsive con orden, intervalos, compuesto, edad del neumático y ritmo.
 - Detección de batallas con closing rate, rango de alcance, confianza y contexto DRS.
 - Proyección conservadora de rejoin y señales de undercut; no muestra precisión falsa cuando faltan datos.
+- Análisis dedicado en `/strategy` para comparar dos pilotos: delta de vueltas limpias, stint actual, edad de neumático, señales con evidencia y rejoin estimado.
 - Mensajes prioritarios de Race Control y desactivación automática de predicciones bajo SC, VSC o bandera roja.
-- Detalle de piloto, comparación, circuito, preferencias locales y vista post-carrera provisional.
+- Detalle de piloto, comparación por sectores, mapa de circuito con líderes reales, preferencias locales y clasificación post-carrera completa.
 - Explicaciones determinísticas: cada número visible en “Explain” está respaldado por evidencia estructurada.
 - Replay reproducible con play/pause, 1×/4×/16×, seek y reset.
 - REST BFF + SSE con snapshots, patches versionados, heartbeat y fallback a polling.
@@ -45,6 +46,7 @@ fixtures             carrera completa + timeline NDJSON
 deploy               unidad systemd
 scripts              deploy atómico y smokes
 docs                 arquitectura y runbook de producción
+dsn                  ZIP original usado como referencia visual; no participa del runtime
 ```
 
 Más detalle en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
@@ -61,6 +63,28 @@ pnpm dev
 ```
 
 Abrir <http://localhost:3000/weekend>. El proveedor por defecto es replay y no necesita red ni secretos.
+
+## Rutas de producto
+
+| Ruta | Función | Fuente de datos |
+|---|---|---|
+| `/weekend` | Live timing, batalla crítica, Race Control y resumen de estrategia | `SessionSnapshot` + SSE |
+| `/strategy?a=&b=` | Pace delta y estrategia entre dos pilotos | vueltas limpias, stints, señales y pit projections |
+| `/track` | Layout, métricas, DRS y líderes por sector | catálogo del circuito + snapshot de sesión |
+| `/compare?a=&b=` | Head-to-head, sectores y trazas de ritmo | snapshot normalizado |
+| `/drivers/:driverId` | Stints, últimas vueltas y rival inmediato | snapshot normalizado |
+| `/settings` | Favorito, delay, zona horaria y ahorro de datos | `localStorage`, sin cuenta |
+
+La navegación primaria es Live / Track / Strategy / Favorite. Battles permanece dentro de Live porque es contexto de carrera, no una sección independiente.
+
+## Diseño Apex Velocity
+
+- Chivo Variable para títulos, Hanken Grotesk Variable para lectura y JetBrains Mono Variable para timing; las tres fuentes se sirven desde el bundle.
+- Paleta carbón con salmón `#ffb4a7`, cian `#00d2ff` y colores de estado reservados para condiciones de pista.
+- Iconos SVG locales, fondos CSS y layout responsive probado desde 320 hasta 1280 px.
+- El ZIP de `dsn/` se conserva como fuente de dirección visual. La implementación adapta su lenguaje sin copiar telemetría, standings, clima, radio, fotos ni posiciones que el proveedor no entrega.
+
+Mapeo completo de cada mockup, dato real y descarte: [docs/design/APEX_VELOCITY.md](docs/design/APEX_VELOCITY.md).
 
 ### Variables de entorno
 
@@ -152,21 +176,25 @@ pnpm typecheck
 pnpm test
 pnpm test:e2e
 pnpm build
+AUDIT_BASE_URL=http://127.0.0.1:3000 pnpm audit:ui
+VISUAL_BASE_URL=http://127.0.0.1:3000 pnpm visual:capture
 pnpm smoke:offline
 pnpm smoke:openf1
 ```
 
 Cobertura funcional actual:
 
-- 41 tests unitarios/integración en 11 suites.
-- 6 escenarios E2E en Chromium móvil y desktop.
+- 51 tests unitarios/integración para dominio, proveedores, BFF, navegación, Strategy y componentes de carrera.
+- 8 ejecuciones E2E en Chromium móvil y desktop, incluidos replay, VSC, post-race, comparación y Strategy.
 - Payloads parciales/malformados, cache, coalescing, circuit breaker y replay clock.
 - Métricas de pace, closing rate, catch range, DRS, tyre age, confianza, rejoin y undercut.
 - Revisión segura de patches SSE y endpoints BFF.
 - VSC, post-race, favoritos persistidos, comparación y accesibilidad de componentes.
-- Smoke PWA mediante Chrome DevTools: manifest instalable, service worker, shell offline y 8 pilotos cacheados.
+- Smoke PWA mediante Chrome DevTools: manifest instalable, service worker, shell offline y snapshot cacheado.
+- `audit:ui` ejecuta Axe y detección de overflow sobre Weekend, Strategy, Track, Compare y Settings a 320 y 1280 px.
+- `visual:capture` genera capturas reproducibles en `/tmp/f1-visuals` sin ensuciar el repositorio.
 
-Última auditoría Lighthouse mobile local (2026-08-10): Accessibility 100, Best Practices 96, SEO 100, Performance 55. El objetivo de Performance es 85; la medición quedó desviada con el host en carga `13.5` sobre 4 CPU y swap al 100%, con 4.28 s de TBT atribuidos al runtime cliente. La desviación queda documentada y debe repetirse en un runner limpio antes de tomar decisiones de optimización.
+La auditoría UI local de esta release terminó sin violaciones Axe y sin overflow horizontal en las rutas auditadas. El JS inicial de `/weekend` ocupa 167 KiB transferidos incluyendo el framework, por debajo del presupuesto de 220 KiB aun antes de excluir React/Next. Lighthouse mobile local dio 67/100/100/100 con throttling simulado (TBT 1.68 s) y 100/100/100/100 usando la capacidad real del host (TBT 0 ms, CLS 0). La diferencia queda documentada: el score simulado debe repetirse en un runner limpio antes de usarlo como gate de rendimiento.
 
 ## Seguridad y privacidad
 

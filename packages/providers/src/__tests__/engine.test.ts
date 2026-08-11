@@ -38,6 +38,9 @@ describe('SessionEngine', () => {
     expect(snapshot.battles).toEqual([]);
     expect(snapshot.pitProjections.every((projection) => projection.disabledReason?.includes('VSC'))).toBe(true);
     expect(snapshot.insights[0]?.type).toBe('race_status');
+
+    const repeated = await engine.getSnapshot('session:replay:demo-race-2024', { delaySeconds: 0, favoriteDriverId: null });
+    expect(repeated.insights[0]).toMatchObject({ type: 'race_status', headline: 'Virtual Safety Car' });
   });
 
   it('coalesces concurrent upstream requests', async () => {

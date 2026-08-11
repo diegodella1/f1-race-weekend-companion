@@ -5,6 +5,9 @@ base_url=${F1_BASE_URL:-https://f1.diegodella.ar}
 session_id=session:replay:demo-race-2024
 
 curl --fail --silent --show-error --max-time 15 "$base_url/weekend" >/dev/null
+curl --fail --silent --show-error --max-time 15 "$base_url/strategy" >/dev/null
+curl --fail --silent --show-error --max-time 15 "$base_url/track" >/dev/null
+curl --fail --silent --show-error --max-time 15 "$base_url/compare" >/dev/null
 curl --fail --silent --show-error --max-time 15 "$base_url/manifest.webmanifest" >/dev/null
 health=$(curl --fail --silent --show-error --max-time 15 "$base_url/api/v1/health/data")
 snapshot=$(curl --fail --silent --show-error --max-time 15 "$base_url/api/v1/sessions/$session_id/snapshot?delay=0")
