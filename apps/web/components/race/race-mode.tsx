@@ -18,7 +18,7 @@ import { PostRaceView } from '@/components/modes/post-race-view';
 
 export function RaceMode({ meeting, initialSnapshot }: { meeting: Meeting; initialSnapshot: SessionSnapshot }) {
   const favoriteDriverId = usePreferences((state) => state.favoriteDriverId);
-  const { data: snapshot, streamHealth, streamConnected, error } = useLiveSession(initialSnapshot.id, initialSnapshot);
+  const { data: snapshot, streamHealthState, streamConnected, error } = useLiveSession(initialSnapshot.id, initialSnapshot);
   if (error && !snapshot) return <FatalSessionError message={error.message} />;
   if (snapshot.phase === 'finished_provisional' || snapshot.phase === 'finished_final') {
     return <PostRaceView meeting={meeting} snapshot={snapshot} />;
@@ -31,7 +31,7 @@ export function RaceMode({ meeting, initialSnapshot }: { meeting: Meeting; initi
       <div className="telemetry-rail" aria-hidden="true"><span>F1C / LIVE</span><i /></div>
       <main className="race-layout">
         <RaceHeader meeting={meeting} snapshot={snapshot} />
-        <DataStateBanner snapshot={snapshot} health={streamHealth} streamConnected={streamConnected} />
+        <DataStateBanner snapshot={snapshot} healthState={streamHealthState} streamConnected={streamConnected} />
         <PriorityBanner event={priorityMessage} />
         {snapshot.meta.provider === 'replay' ? <ReplayControls sessionId={snapshot.id} /> : null}
         <FavoriteStrip driver={favorite} battle={favoriteBattle} />

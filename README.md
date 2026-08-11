@@ -1,10 +1,10 @@
 # F1 Race Weekend Companion
 
-PWA mobile-first para usar como segunda pantalla durante un fin de semana de Fórmula 1. Convierte timing crudo en contexto accionable: batallas, ritmo de vueltas limpias, neumáticos, ventanas de alcance, proyecciones de salida de boxes, mensajes de dirección de carrera y explicaciones determinísticas.
+PWA mobile-first para usar como segunda pantalla durante un fin de semana de Fórmula 1. Convierte timing crudo en contexto accionable: batallas, ritmo de vueltas limpias, neumáticos, ventanas de alcance, proyecciones de salida de boxes, mensajes de dirección de carrera y explicaciones determinísticas. La interfaz Apex Velocity combina un HUD oscuro de alta densidad con un catálogo completo de la temporada 2026.
 
 - **Producción:** [f1.diegodella.ar](https://f1.diegodella.ar/weekend)
 - **Modo público actual:** replay determinístico, sin login ni credenciales
-- **Estado:** release `1.0.0`
+- **Estado:** desplegado y operado como servicio productivo
 
 > Proyecto independiente y no afiliado, patrocinado ni aprobado por Formula 1, FIA, equipos o pilotos. Las marcas pertenecen a sus respectivos titulares.
 
@@ -13,8 +13,11 @@ PWA mobile-first para usar como segunda pantalla durante un fin de semana de Fó
 - Timing tower responsive con orden, intervalos, compuesto, edad del neumático y ritmo.
 - Detección de batallas con closing rate, rango de alcance, confianza y contexto DRS.
 - Proyección conservadora de rejoin y señales de undercut; no muestra precisión falsa cuando faltan datos.
+- Análisis dedicado en `/strategy` para comparar dos pilotos: delta de vueltas limpias, stint actual, edad de neumático, señales con evidencia y rejoin estimado.
 - Mensajes prioritarios de Race Control y desactivación automática de predicciones bajo SC, VSC o bandera roja.
-- Detalle de piloto, comparación, circuito, preferencias locales y vista post-carrera provisional.
+- Detalle de piloto, comparación por sectores, mapa de circuito con líderes reales, preferencias locales y clasificación post-carrera completa.
+- Directorio 2026 con 22 pilotos, 11 equipos y 25 registros de Grand Prix; conserva cancelaciones y reemplazos.
+- Mapas de circuito oficiales servidos desde Formula 1 Media. Una URL ausente, cambiada, fallida o asociada al circuito equivocado degrada a “no disponible” sin usar dibujos sustitutos. El respaldo actual verifica 23; Madring y Sepang quedan ocultos porque OpenF1 reutiliza dibujos de Catalunya y Sakhir.
 - Explicaciones determinísticas: cada número visible en “Explain” está respaldado por evidencia estructurada.
 - Replay reproducible con play/pause, 1×/4×/16×, seek y reset.
 - REST BFF + SSE con snapshots, patches versionados, heartbeat y fallback a polling.
@@ -45,6 +48,7 @@ fixtures             carrera completa + timeline NDJSON
 deploy               unidad systemd
 scripts              deploy atómico y smokes
 docs                 arquitectura y runbook de producción
+dsn                  ZIP original usado como referencia visual; no participa del runtime
 ```
 
 Más detalle en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
@@ -62,6 +66,29 @@ pnpm dev
 
 Abrir <http://localhost:3000/weekend>. El proveedor por defecto es replay y no necesita red ni secretos.
 
+## Rutas de producto
+
+| Ruta | Función | Fuente de datos |
+|---|---|---|
+| `/weekend` | Live timing, batalla crítica, Race Control y resumen de estrategia | `SessionSnapshot` + SSE |
+| `/strategy?a=&b=` | Pace delta y estrategia entre dos pilotos | vueltas limpias, stints, señales y pit projections |
+| `/track` | Mapa oficial, métricas, DRS y líderes por sector | catálogo verificado + snapshot de sesión |
+| `/season` | Circuitos, pilotos y equipos 2026 con búsqueda y fichas | catálogo versionado + sync OpenF1 |
+| `/compare?a=&b=` | Head-to-head, sectores y trazas de ritmo | snapshot normalizado |
+| `/drivers/:driverId` | Stints, últimas vueltas y rival inmediato | snapshot normalizado |
+| `/settings` | Favorito, delay, zona horaria y ahorro de datos | `localStorage`, sin cuenta |
+
+La navegación primaria es Live / Track / Strategy / Favorite. Battles permanece dentro de Live porque es contexto de carrera, no una sección independiente.
+
+## Diseño Apex Velocity
+
+- Chivo Variable para títulos, Hanken Grotesk Variable para lectura y JetBrains Mono Variable para timing; las tres fuentes se sirven desde el bundle.
+- Paleta carbón con salmón `#ffb4a7`, cian `#00d2ff` y colores de estado reservados para condiciones de pista.
+- Iconos SVG locales, fondos CSS y layout responsive probado desde 320 hasta 1280 px.
+- El ZIP de `dsn/` se conserva como fuente de dirección visual. La implementación adapta su lenguaje sin copiar telemetría, standings, clima, radio, fotos ni posiciones que el proveedor no entrega.
+
+Mapeo completo de cada mockup, dato real y descarte: [docs/design/APEX_VELOCITY.md](docs/design/APEX_VELOCITY.md).
+
 ### Variables de entorno
 
 | Variable | Default | Uso |
@@ -72,6 +99,7 @@ Abrir <http://localhost:3000/weekend>. El proveedor por defecto es replay y no n
 | `OPENF1_USERNAME` | — | Usuario OAuth2 live; sólo servidor |
 | `OPENF1_PASSWORD` | — | Password OAuth2 live; sólo servidor |
 | `OPENF1_ACCESS_TOKEN` | — | Token efímero alternativo; sólo smoke |
+| `SEASON_CATALOG_SYNC` | `on` | Sync de calendario cada 24 h; `off` fuerza respaldo versionado |
 | `NEXT_PUBLIC_APP_URL` | local | URL canónica del frontend |
 
 Copiar siempre `.env.example`; los archivos `.env*` reales están ignorados por Git.
@@ -80,20 +108,22 @@ Copiar siempre `.env.example`; los archivos `.env*` reales están ignorados por 
 
 Cada navegador recibe una sesión anónima aislada mediante cookie HttpOnly `f1c_replay_run`, con expiración de dos horas. Un usuario que avanza el replay no altera el estado de otro.
 
-Timeline de demo:
+Replay real: Hungarian Grand Prix 2026, OpenF1 session `11342`. Incluye 22 pilotos, 11 equipos, clasificación, stints y últimas 12 vueltas reales por piloto con sectores originales.
 
-- `0 ms`: carrera verde; PIA se acerca a LEC.
-- `2000 ms`: VSC; batallas y predicciones quedan suspendidas.
-- `3000 ms`: bandera verde.
-- `4000 ms`: bandera a cuadros.
-- `5000 ms`: resultado provisional.
+Timeline comprimido de hechos reales:
+
+- `0 ms`: estado real al final de la vuelta 43.
+- `2000 ms`: amarilla real en sector 8, vuelta 50.
+- `3000 ms`: sector despejado.
+- `4000 ms`: bandera a cuadros, vuelta 70.
+- `5000 ms`: clasificación provisional real.
 
 Control por API, disponible sólo con `ENABLE_REPLAY=true`:
 
 ```bash
 curl -X POST http://localhost:3000/api/v1/replay/control \
   -H 'content-type: application/json' \
-  -d '{"action":"seek","sessionId":"session:replay:demo-race-2024","atMs":2100}'
+  -d '{"action":"seek","sessionId":"session:replay:hungary-race-2026","atMs":2100}'
 ```
 
 ## OpenF1
@@ -118,7 +148,7 @@ Limitaciones verificadas:
 
 - El orden de clasificación de OpenF1 no se presenta como orden físico garantizado.
 - No hay estado exacto del detection point DRS ni distinción confiable final/provisional.
-- Longitud, zonas DRS, pit loss y layout licenciado pueden faltar.
+- Longitud, zonas DRS y pit loss pueden faltar. El mapa sólo aparece cuando coincide con el manifest aprobado de Formula 1 Media.
 - Resultados históricos pueden publicarse después de la clasificación oficial.
 - Sin credenciales live, producción conserva replay como demo funcional y no simula datos en vivo.
 
@@ -138,6 +168,10 @@ Todos los endpoints viven bajo `/api/v1`.
 | `GET /sessions/:id/insights` | explicaciones determinísticas |
 | `GET /sessions/:id/race-control` | feed de Race Control |
 | `GET /tracks/:trackId` | contexto de circuito |
+| `GET /season/2026` | catálogo completo 2026 |
+| `GET /season/2026/circuits/:id` | circuito y sus eventos |
+| `GET /season/2026/drivers/:id` | piloto y equipo |
+| `GET /season/2026/teams/:id` | equipo y sus pilotos |
 | `GET /health/data` | salud, proveedor y frescura |
 | `GET /replay/sessions` | fixtures disponibles |
 | `POST /replay/control` | play, pause, speed, seek y reset |
@@ -152,21 +186,25 @@ pnpm typecheck
 pnpm test
 pnpm test:e2e
 pnpm build
+AUDIT_BASE_URL=http://127.0.0.1:3000 pnpm audit:ui
+VISUAL_BASE_URL=http://127.0.0.1:3000 pnpm visual:capture
 pnpm smoke:offline
 pnpm smoke:openf1
 ```
 
 Cobertura funcional actual:
 
-- 41 tests unitarios/integración en 11 suites.
-- 6 escenarios E2E en Chromium móvil y desktop.
+- Tests unitarios/integración para dominio, proveedores, BFF, catálogo, sync fail-closed, navegación, Strategy y componentes de carrera.
+- E2E en Chromium móvil y desktop para replay real, banderas, post-race, comparación, Strategy y directorio 2026.
 - Payloads parciales/malformados, cache, coalescing, circuit breaker y replay clock.
 - Métricas de pace, closing rate, catch range, DRS, tyre age, confianza, rejoin y undercut.
 - Revisión segura de patches SSE y endpoints BFF.
-- VSC, post-race, favoritos persistidos, comparación y accesibilidad de componentes.
-- Smoke PWA mediante Chrome DevTools: manifest instalable, service worker, shell offline y 8 pilotos cacheados.
+- VSC en dominio, bandera amarilla real en replay, post-race, favoritos persistidos, comparación y accesibilidad de componentes.
+- Smoke PWA mediante Chrome DevTools: manifest instalable, service worker, shell offline y snapshot cacheado.
+- `audit:ui` ejecuta Axe y detección de overflow sobre Weekend, Strategy, Track, Compare y Settings a 320 y 1280 px.
+- `visual:capture` genera capturas reproducibles en `/tmp/f1-visuals` sin ensuciar el repositorio.
 
-Última auditoría Lighthouse mobile local (2026-08-10): Accessibility 100, Best Practices 96, SEO 100, Performance 55. El objetivo de Performance es 85; la medición quedó desviada con el host en carga `13.5` sobre 4 CPU y swap al 100%, con 4.28 s de TBT atribuidos al runtime cliente. La desviación queda documentada y debe repetirse en un runner limpio antes de tomar decisiones de optimización.
+La auditoría UI local de esta release terminó sin violaciones Axe y sin overflow horizontal en las rutas auditadas. El JS inicial de `/weekend` ocupa 167 KiB transferidos incluyendo el framework, por debajo del presupuesto de 220 KiB aun antes de excluir React/Next. Lighthouse mobile local dio 67/100/100/100 con throttling simulado (TBT 1.68 s) y 100/100/100/100 usando la capacidad real del host (TBT 0 ms, CLS 0). La diferencia queda documentada: el score simulado debe repetirse en un runner limpio antes de usarlo como gate de rendimiento.
 
 ## Seguridad y privacidad
 
@@ -174,7 +212,7 @@ Cobertura funcional actual:
 - Preferencias exclusivamente en `localStorage`.
 - Cookie de replay aleatoria, HttpOnly, SameSite=Lax, Secure en producción y sin identidad.
 - OAuth y upstream sólo del lado servidor.
-- CSP, `nosniff`, Referrer Policy y Permissions Policy en todas las rutas.
+- CSP, `nosniff`, Referrer Policy y Permissions Policy en todas las rutas; imágenes remotas limitadas a `media.formula1.com`.
 - Cache y estado en memoria; no hay migraciones ni base de datos.
 - Imágenes Docker y unidad systemd ejecutan como usuario no privilegiado.
 

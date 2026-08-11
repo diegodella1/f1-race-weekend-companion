@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "sessions": [
     {
-      "id": "session:replay:demo-race-2024",
-      "name": "Austrian Grand Prix",
+      "id": "session:replay:hungary-race-2026",
+      "name": "Hungarian Grand Prix",
       "kind": "race",
-      "fixture": "2024-demo-race.json",
-      "events": "2024-demo-race.ndjson",
+      "fixture": "2026-hungary-race.json",
+      "events": "2026-hungary-race.ndjson",
       "durationMs": 5000
     }
   ]

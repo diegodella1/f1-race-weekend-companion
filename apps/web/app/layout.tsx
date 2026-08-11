@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
+import '@fontsource-variable/chivo/wght.css';
+import '@fontsource-variable/chivo/wght-italic.css';
+import '@fontsource-variable/hanken-grotesk/wght.css';
+import '@fontsource-variable/jetbrains-mono/wght.css';
 import { AppProviders } from '@/components/shared/app-providers';
 import { ServiceWorkerRegister } from '@/components/shared/service-worker-register';
 import './globals.css';
@@ -13,8 +17,12 @@ export const metadata: Metadata = {
   appleWebApp: { capable: true, title: 'F1 Companion', statusBarStyle: 'black-translucent' }
 };
 
-export const viewport: Viewport = { themeColor: '#0B0D10', colorScheme: 'dark', width: 'device-width', initialScale: 1 };
+export const viewport: Viewport = { themeColor: '#0e0e0e', colorScheme: 'dark', width: 'device-width', initialScale: 1 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en" data-scroll-behavior="smooth"><body><AppProviders>{children}</AppProviders><ServiceWorkerRegister /></body></html>;
+  return (
+    <html lang="en" data-scroll-behavior="smooth">
+      <body><AppProviders>{children}</AppProviders><ServiceWorkerRegister /></body>
+    </html>
+  );
 }

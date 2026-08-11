@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import { cookies } from 'next/headers';
 import { SystemClock, type Meeting, type Track } from '@f1/domain';
 import { OpenF1Adapter, ReplayAdapter, SessionEngine, type TimingProvider } from '@f1/providers';
+import { getCircuitProfile } from './season-catalog';
 
 export interface AppRuntime {
   provider: TimingProvider;
@@ -29,8 +30,8 @@ async function createRuntime(): Promise<AppRuntime> {
   const directory = fixtureDirectory();
   const clock = new SystemClock();
   const replayAdapter = await ReplayAdapter.create({
-    fixturePath: resolve(directory, '2024-demo-race.json'),
-    eventsPath: resolve(directory, '2024-demo-race.ndjson'),
+    fixturePath: resolve(directory, '2026-hungary-race.json'),
+    eventsPath: resolve(directory, '2026-hungary-race.ndjson'),
     clock
   });
   let provider: TimingProvider = replayAdapter;
@@ -47,8 +48,9 @@ async function createRuntime(): Promise<AppRuntime> {
     try {
       const from = new Date(clock.now().getTime() - 4 * 24 * 60 * 60_000).toISOString();
       const to = new Date(clock.now().getTime() + 21 * 24 * 60 * 60_000).toISOString();
-      const liveMeeting = (await liveProvider.getMeetings({ from, to }))[0];
+      const liveMeeting = (await liveProvider.getMeetings({ from, to })).find((candidate) => !candidate.isCancelled);
       if (liveMeeting) {
+        const catalogCircuit = await getCircuitProfile(liveMeeting.circuitId);
         provider = liveProvider;
         meeting = liveMeeting;
         track = {
@@ -60,7 +62,10 @@ async function createRuntime(): Promise<AppRuntime> {
           pitLossSec: null,
           drsZones: [],
           sectors: [],
-          layoutPath: null
+          layoutPath: catalogCircuit?.layoutStatus === 'verified' ? catalogCircuit.layoutImageUrl : null,
+          layoutSourceUrl: catalogCircuit?.layoutSourceUrl ?? null,
+          layoutVerifiedAt: catalogCircuit?.layoutVerifiedAt ?? null,
+          layoutStatus: catalogCircuit?.layoutStatus ?? 'unavailable'
         };
       }
     } catch (error) {

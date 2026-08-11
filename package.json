@@ -16,8 +16,11 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "pnpm --filter @f1/web test:e2e",
+    "audit:ui": "node scripts/audit-ui.mjs",
+    "visual:capture": "node scripts/capture-visuals.mjs",
     "smoke:openf1": "tsx scripts/smoke-openf1.ts",
-    "smoke:offline": "tsx scripts/smoke-offline.ts"
+    "smoke:offline": "tsx scripts/smoke-offline.ts",
+    "sync:season": "tsx scripts/sync-season-2026.ts"
   },
   "devDependencies": {
     "@f1/domain": "workspace:*",

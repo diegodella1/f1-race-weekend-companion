@@ -1,5 +1,0 @@
-{"atMs":1000,"type":"gap","payload":{"driverNumber":81,"gap":9.4,"interval":1.0}}
-{"atMs":2000,"type":"status","payload":{"trackStatus":{"code":"VSC","label":"Virtual Safety Car"},"raceControl":{"id":"rc:vsc:1","occurredAt":"2024-06-30T14:02:02.000Z","category":"safety_car","priority":"high","sourceText":"VIRTUAL SAFETY CAR DEPLOYED","label":"Virtual Safety Car","driverIds":[]}}}
-{"atMs":3000,"type":"status","payload":{"trackStatus":{"code":"GREEN","label":"Green flag"},"raceControl":{"id":"rc:green:1","occurredAt":"2024-06-30T14:02:03.000Z","category":"flag","priority":"high","sourceText":"VIRTUAL SAFETY CAR ENDING - GREEN FLAG","label":"Green flag","driverIds":[]}}}
-{"atMs":4000,"type":"phase","payload":{"phase":"finishing","trackStatus":{"code":"CHEQUERED","label":"Chequered flag"},"lap":71}}
-{"atMs":5000,"type":"phase","payload":{"phase":"finished_provisional","endsAt":"2024-06-30T14:25:00.000Z"}}

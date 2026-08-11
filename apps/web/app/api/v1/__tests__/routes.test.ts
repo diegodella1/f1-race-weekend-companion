@@ -3,7 +3,7 @@ import { GET as getSnapshot } from '../sessions/[id]/snapshot/route';
 import { GET as getDataHealth } from '../health/data/route';
 import { POST as controlReplay } from '../replay/control/route';
 
-const sessionId = 'session:replay:demo-race-2024';
+const sessionId = 'session:replay:hungary-race-2026';
 
 describe('BFF integration', () => {
   beforeEach(async () => {
@@ -15,13 +15,13 @@ describe('BFF integration', () => {
 
   it('returns a normalized derived snapshot', async () => {
     const response = await getSnapshot(
-      new Request(`http://localhost/api/v1/sessions/${sessionId}/snapshot?delay=0&favorite=driver%3A81%3A2024`),
+      new Request(`http://localhost/api/v1/sessions/${sessionId}/snapshot?delay=0&favorite=driver%3A1%3A2026`),
       { params: Promise.resolve({ id: sessionId }) }
     );
     const snapshot = await response.json();
     expect(response.status).toBe(200);
-    expect(snapshot.drivers).toHaveLength(8);
-    expect(snapshot.battles[0].behindDriverId).toBe('driver:81:2024');
+    expect(snapshot.drivers).toHaveLength(22);
+    expect(snapshot.meta.provider).toBe('replay:openf1');
   });
 
   it('rejects inconsistent delay values using public error shape', async () => {

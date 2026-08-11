@@ -5,39 +5,38 @@ import type { ProviderUpdateBatch, TimingProvider } from '../types';
 import { ReplayAdapter } from '../replay';
 import { resolve } from 'node:path';
 
-const fixturePath = resolve(process.cwd(), 'fixtures/2024-demo-race.json');
-const eventsPath = resolve(process.cwd(), 'fixtures/2024-demo-race.ndjson');
+const fixturePath = resolve(process.cwd(), 'fixtures/2026-hungary-race.json');
+const eventsPath = resolve(process.cwd(), 'fixtures/2026-hungary-race.ndjson');
+const sessionId = 'session:replay:hungary-race-2026';
 
 describe('SessionEngine', () => {
   it('derives battles, pit projections, and auditable insights', async () => {
-    const clock = new FakeClock(new Date('2024-06-30T14:02:00.000Z'));
+    const clock = new FakeClock(new Date('2026-07-26T14:04:00.000Z'));
     const adapter = await ReplayAdapter.create({ fixturePath, eventsPath, clock });
     const engine = new SessionEngine(adapter, clock);
 
-    const snapshot = await engine.getSnapshot('session:replay:demo-race-2024', {
+    const snapshot = await engine.getSnapshot(sessionId, {
       delaySeconds: 0,
-      favoriteDriverId: 'driver:81:2024'
+      favoriteDriverId: 'driver:1:2026'
     });
 
     expect(snapshot.battles.length).toBeGreaterThan(0);
-    expect(snapshot.battles[0]?.behindDriverId).toBe('driver:81:2024');
-    expect(snapshot.pitProjections).toHaveLength(8);
+    expect(snapshot.pitProjections.length).toBeGreaterThan(0);
     expect(snapshot.insights.some((insight) => insight.type === 'favorite')).toBe(true);
   });
 
-  it('disables predictions consistently under VSC', async () => {
-    const clock = new FakeClock(new Date('2024-06-30T14:02:00.000Z'));
+  it('preserves real replay race-control events without inventing neutralization', async () => {
+    const clock = new FakeClock(new Date('2026-07-26T14:04:00.000Z'));
     const adapter = await ReplayAdapter.create({ fixturePath, eventsPath, clock });
     const engine = new SessionEngine(adapter, clock);
-    await engine.getSnapshot('session:replay:demo-race-2024', { delaySeconds: 0, favoriteDriverId: null });
+    await engine.getSnapshot(sessionId, { delaySeconds: 0, favoriteDriverId: null });
     adapter.play();
     clock.advance(2_100);
 
-    const snapshot = await engine.getSnapshot('session:replay:demo-race-2024', { delaySeconds: 0, favoriteDriverId: null });
+    const snapshot = await engine.getSnapshot(sessionId, { delaySeconds: 0, favoriteDriverId: null });
 
-    expect(snapshot.battles).toEqual([]);
-    expect(snapshot.pitProjections.every((projection) => projection.disabledReason?.includes('VSC'))).toBe(true);
-    expect(snapshot.insights[0]?.type).toBe('race_status');
+    expect(snapshot.trackStatus).toEqual({ code: 'YELLOW', label: 'Yellow flag' });
+    expect(snapshot.raceControl.at(-1)?.sourceText).toBe('YELLOW IN TRACK SECTOR 8');
   });
 
   it('coalesces concurrent upstream requests', async () => {

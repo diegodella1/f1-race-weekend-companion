@@ -9,7 +9,10 @@ export function validateInsightEvidence(insight: Insight): boolean {
 }
 
 function raceStatusInsight(previous: SessionSnapshot | null, current: SessionSnapshot): Insight | null {
-  if (!previous || previous.trackStatus.code === current.trackStatus.code) return null;
+  if (!previous) return null;
+  if (previous.trackStatus.code === current.trackStatus.code) {
+    return previous.insights.find((insight) => insight.type === 'race_status' && insight.headline === current.trackStatus.label) ?? null;
+  }
   return {
     id: `race_status:${current.revision}`,
     type: 'race_status',
